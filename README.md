@@ -61,10 +61,10 @@ Keyframe sequences rendered by the v4 model after 500 training steps on WebVid-1
 
 | Prompt | Keyframe strip |
 |--------|---------------|
-| *"A bird flies fast briefly"* | ![bird_fast](output/bird_fast/keyframe_strip.png) |
-| *"The mountain stays static for eternity"* | ![mountain](output/mountain_static/keyframe_strip.png) |
-| *"Aerial shot winter forest"* | ![winter](output/winter_forest/keyframe_strip.png) |
-| *"Since she was born, she was never happy"* | ![never_happy](output/never_happy/keyframe_strip.png) |
+| *"A bird flies fast briefly"* | ![bird_fast](results/bird_fast/keyframe_strip.png) |
+| *"The mountain stays static for eternity"* | ![mountain](results/mountain_static/keyframe_strip.png) |
+| *"Aerial shot winter forest"* | ![winter](results/winter_forest/keyframe_strip.png) |
+| *"Since she was born, she was never happy"* | ![never_happy](results/never_happy/keyframe_strip.png) |
 
 Each strip shows 4 keyframes at `t = 0.0, 0.33, 0.67, 1.0`. The model learns to distribute Gaussian density differently across time based on the temporal semantics of the caption (e.g. "briefly" vs. "for eternity").
 
@@ -87,7 +87,7 @@ Tested on Python 3.10, PyTorch 2.1. GPU optional — CPU works for inference, GP
 ### Train from scratch (v4 — full pipeline)
 
 ```bash
-python stli_gaussian_v4.py
+python src/stli_gaussian_v4.py
 ```
 
 This will:
@@ -100,6 +100,8 @@ This will:
 ### Inference from a saved checkpoint
 
 ```python
+import sys
+sys.path.insert(0, 'src')
 import torch
 from stli_gaussian_v4 import STLI_Infrastructure, Config, save_keyframe_images
 
@@ -113,9 +115,9 @@ save_keyframe_images(model, "A dog runs across the field", "dog_run")
 ### Run earlier versions
 
 ```bash
-python world_model.py          # v0: minimal prototype, no external deps
-python stli_clip_v2.py         # v2: CLIP + semantic alignment loss
-python stli_gaussian_v3.py     # v3: per-step pixel loss, no caching
+python src/world_model.py          # v0: minimal prototype, no external deps
+python src/stli_clip_v2.py         # v2: CLIP + semantic alignment loss
+python src/stli_gaussian_v3.py     # v3: per-step pixel loss, no caching
 ```
 
 ---

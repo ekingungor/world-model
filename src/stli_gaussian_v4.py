@@ -26,8 +26,8 @@ class Config:
     n_keyframes_per_video = 4
     checkpoint_every = 50      # Save checkpoint every N steps
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    _base = os.path.dirname(os.path.abspath(__file__))
-    output_dir = os.path.join(_base, "output")
+    _base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    output_dir = os.path.join(_base, "results")
     checkpoint_dir = os.path.join(_base, "checkpoints")
 
 # --- 2. PURE PYTORCH DIFFERENTIABLE GAUSSIAN RASTERIZER ---
